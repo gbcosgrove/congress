@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'sunlight'
-require 'influence_explorer'
 
 pols = Sunlight::Legislator.all_where(in_office: 'true')
 

@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # API gems for sunlight foundation
 gem 'sunlight'
+gem 'sunlight-influence', :git => 'https://github.com/gbcosgrove/sunlight-influence-gem'
 gem 'geocoder'
 gem 'json'
 # For database chron jobs

@@ -1,18 +1,38 @@
 <h1>Listing politicians</h1>
 
-<table>
+<table class="nice-table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Picture</th>
+      <th>Title</th>
+      <th>Name</th>
+      <th>Party</th>
+      <th>State</th>
+      <th>District</th>
+      <!-- <th>In office</th>
+      <th>Gender</th> -->
+      <th>Birthdate</th>
+      <!-- <th colspan="3"></th> -->
+      <th>Link</th>
     </tr>
   </thead>
 
   <tbody>
     <% @politicians.each do |politician| %>
       <tr>
+        <td>
+            <img src='https://dl.dropboxusercontent.com/u/1500703/buy-congress/images/100x125/<%= politician.bioguide_id %>.jpg' />
+        </td>
+        <td><%= politician.title %></td>
+        <td><%= politician.firstname %> <%= politician.last_name %></td>
+        <td><%= politician.party %></td>
+        <td><%= politician.state %></td>
+        <td><%= politician.district %></td>
+        <!-- <td><%= politician.in_office %></td> -->
+        <!-- <td><%= politician.gender %></td> -->
+        <td><%= politician.birthdate %></td>
         <td><%= link_to 'Show', politician %></td>
-        <td><%= link_to 'Edit', edit_politician_path(politician) %></td>
-        <td><%= link_to 'Destroy', politician, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>

@@ -13,8 +13,7 @@
  *= require foundation_and_overrides
  *= require_self
 
- *= require jquery.ui.core
- *= require jquery.ui.theme
- *= require dataTables/jquery.dataTables.foundation
- *= require dataTables/jquery.dataTables
  */
+
+@import 'partials/home';
+@import 'partials/politicians';

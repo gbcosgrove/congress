@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/gbcosgrove/sunlight-influence-gem
+  revision: 44a04e3e97d8a21cc4eb8cb6a9179f85dc575e0f
+  specs:
+    sunlight-influence (0.0.1.alpha)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -188,6 +194,7 @@ DEPENDENCIES
   shoulda-matchers
   spring
   sunlight
+  sunlight-influence!
   turbolinks
   uglifier (>= 1.3.0)
   whenever

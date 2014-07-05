@@ -15,5 +15,12 @@
 
  */
 
+
+@import 'modules/variables';
+@import 'partials/header';
+@import 'partials/footer';
 @import 'partials/home';
 @import 'partials/politicians';
+@import 'home.css.scss';
+@import 'politicians.css.scss';
+

@@ -1,4 +1,105 @@
 <p id="notice"><%= notice %></p>
 
+
+  <div class="large-4 columns">
+      <p id='congress-name'>
+      <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
+      </p>
+      <div id='bio-photo'>
+        <img src='https://dl.dropboxusercontent.com/u/1500703/buy-congress/images/200x250/<%= @politician.bioguide_id %>.jpg' />
+      </div>
+
+      <div>
+          <strong>Party:</strong>
+          <%= @politician.party %>
+          <br>
+          <strong>State:</strong>
+          <%= @politician.state %>
+          <br>
+          <strong>District:</strong>
+          <%= @politician.district %>
+          <br>
+          <strong>In office:</strong>
+          <%= @politician.in_office %>
+          <br>
+          <strong>Birthdate:</strong>
+          <%= @politician.birthdate %>
+          <br>
+          <strong>Bioguide:</strong>
+          <%= @politician.bioguide_id %>
+          <br>
+          <strong>Votesmart:</strong>
+          <%= @politician.votesmart_id %>
+          <br>
+          <strong>Govtrack:</strong>
+          <%= @politician.govtrack_id %>
+          <br>
+          <strong>Crp:</strong>
+          <%= @politician.crp_id %>
+          <br>
+      </div>
+      <div>
+
+    </div>
+  </div>
+
+  <div class="large-8 columns" id="donors">
+      <table class="nice-table">
+        <h3>Top Donor Categories</h3>
+        <thead class="t-head">
+          <tr>
+            <th>Category</th>
+            <th>Count</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+          <tbody>
+              <% first = @politician.firstname %>
+              <% puts first %>
+              <% last = @politician.last_name %>
+              <% puts last %>
+              <% industries = retrieve_top_industries(first, last) %>
+              <% industries.each do |industry| %>
+              <tr>
+                <td><%= industry[:name].downcase.capitalize %></td>
+                <td><%= industry[:count] %></td>
+                <td>$<%= industry[:amount] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+
+      <table class="nice-table">
+        <h3>Top Donor Organizations</h3>
+        <thead class="t-head">
+          <tr>
+            <th>Category</th>
+            <th>Count</th>
+            <th>Total</th>
+            <th>Employees</th>
+            <th>Direct</th>
+          </tr>
+        </thead>
+          <tbody>
+              <% first = @politician.firstname %>
+              <% puts first %>
+              <% last = @politician.last_name %>
+              <% puts last %>
+              <% contributors = retrieve_top_contributors(first, last) %>
+              <% contributors.each do |contributor| %>
+              <tr>
+                <td><%= contributor[:name] %></td>
+                <td><%= contributor[:total_count] %></td>
+                <td>$<%= contributor[:total_amount] %></td>
+                <td>$<%= contributor[:employee_amount] %></td>
+                <td>$<%= contributor[:direct_amount] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+
+      </table>
+  </div>
+
+
 <%= link_to 'Edit', edit_politician_path(@politician) %> |
 <%= link_to 'Back', politicians_path %>

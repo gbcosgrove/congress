@@ -6,7 +6,7 @@
       <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
       </p>
       <div id='bio-photo'>
-        <img src='https://dl.dropboxusercontent.com/u/1500703/buy-congress/images/200x250/<%= @politician.bioguide_id %>.jpg' />
+        <img src='https://s3.amazonaws.com/congress-media/bio-pictures/200x250/<%= @politician.bioguide_id %>.jpg' />
       </div>
 
       <div>
@@ -19,11 +19,11 @@
           <strong>District:</strong>
           <%= @politician.district %>
           <br>
-          <strong>In office:</strong>
-          <%= @politician.in_office %>
+         <!--  <strong>In office:</strong>
+          <%= @politician.in_office %> -->
           <br>
           <strong>Birthdate:</strong>
-          <%= @politician.birthdate %>
+          <%= @politician.birthdate.to_date.to_formatted_s(:long_ordinal) %>
           <br>
           <strong>Bioguide:</strong>
           <%= @politician.bioguide_id %>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="large-8 columns" id="donors">
-      <table class="nice-table">
+      <table class="formatted-data-table">
         <h3>Top Donor Categories</h3>
         <thead class="t-head">
           <tr>
@@ -54,22 +54,20 @@
           </tr>
         </thead>
           <tbody>
-              <% first = @politician.firstname %>
-              <% puts first %>
-              <% last = @politician.last_name %>
-              <% puts last %>
-              <% industries = retrieve_top_industries(first, last) %>
+              <% name = "#{@politician.firstname} #{@politician.last_name}" %>
+              <% puts name %>
+              <% industries = top_industries(name: name, cycle:"2012") %>
               <% industries.each do |industry| %>
               <tr>
-                <td><%= industry[:name].downcase.capitalize %></td>
-                <td><%= industry[:count] %></td>
-                <td>$<%= industry[:amount] %></td>
+                <td><%= industry["name"].downcase.capitalize %></td>
+                <td><%= industry["count"] %></td>
+                <td>$<%= industry["amount"] %></td>
               </tr>
             <% end %>
           </tbody>
       </table>
 
-      <table class="nice-table">
+     <table class="formatted-data-table">
         <h3>Top Donor Organizations</h3>
         <thead class="t-head">
           <tr>
@@ -85,14 +83,14 @@
               <% puts first %>
               <% last = @politician.last_name %>
               <% puts last %>
-              <% contributors = retrieve_top_contributors(first, last) %>
+              <% contributors = top_contributors(name: name, cycle: "2012") %>
               <% contributors.each do |contributor| %>
               <tr>
-                <td><%= contributor[:name] %></td>
-                <td><%= contributor[:total_count] %></td>
-                <td>$<%= contributor[:total_amount] %></td>
-                <td>$<%= contributor[:employee_amount] %></td>
-                <td>$<%= contributor[:direct_amount] %></td>
+                <td><%= contributor["name"] %></td>
+                <td><%= contributor["total_count"] %></td>
+                <td>$<%= contributor["total_amount"] %></td>
+                <td>$<%= contributor["employee_amount"] %></td>
+                <td>$<%= contributor["direct_amount"] %></td>
               </tr>
             <% end %>
           </tbody>

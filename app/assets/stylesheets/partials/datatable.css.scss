@@ -1,0 +1,35 @@
+table.dataTable tbody td {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: $grey-blue;
+}
+
+#politician-index-table {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.dataTable {
+  background: green;
+}
+
+#politician-index-table.tr {
+  background: red;
+}
+
+#politician-index-table.tbody.tr {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid black;
+}

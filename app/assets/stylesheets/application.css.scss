@@ -12,15 +12,20 @@
  *
  *= require foundation_and_overrides
  *= require_self
+ *= require dataTables/jquery.dataTables
+ *= require dataTables/jquery.dataTables.foundation
+
+
+
+
 
  */
-
 
 @import 'modules/variables';
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/home';
 @import 'partials/politicians';
-@import 'home.css.scss';
 @import 'politicians.css.scss';
-
+@import 'home.css.scss';
+@import 'partials/datatable';

@@ -37,6 +37,8 @@ class PoliticiansController < ApplicationController
     end
   end
 
+
+
   # PATCH/PUT /politicians/1
   # PATCH/PUT /politicians/1.json
   def update

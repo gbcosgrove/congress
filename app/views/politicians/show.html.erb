@@ -1,6 +1,5 @@
+
 <p id="notice"><%= notice %></p>
-
-
   <div class="large-3 columns">
       <p id='congress-name'>
       <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
@@ -51,6 +50,7 @@
     </ul>
       <div class="tabs-content">
         <div class="content active" id="panel2-1">
+          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
           <table class="formatted-data-table">
             <h3>Top Donor Categories</h3>
             <thead class="t-head">
@@ -61,6 +61,8 @@
               </tr>
             </thead>
               <tbody>
+                  <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+                  <% chart = data.to_json.html_safe %>
                   <% name = "#{@politician.firstname} #{@politician.last_name}" %>
                   <% puts name %>
                   <% industries = top_industries(name: name, cycle:"2012") %>
@@ -76,6 +78,7 @@
         </div>
 
         <div class="content" id="panel2-2">
+          <div id="contributors-chart" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
          <table class="formatted-data-table">
             <h3>Top Donor Organizations</h3>
             <thead class="t-head">
@@ -109,6 +112,90 @@
       </div>
   </div>
 
+<div>
+  <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+  <% chart = data.to_json.html_safe %>
+
+  <% data = donor_contributors_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+  <% contributors_chart = data.to_json.html_safe %>
+
+</div>
+
+<script>
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+        enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Top Donor Industries'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: <%= chart %>,
+        }]
+    });
+});
+
+</script>
+
+<script>
+$(function () {
+    $('#contributors-chart').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+        enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Top Contributors'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: <%= contributors_chart %>,
+        }]
+    });
+});
+
+</script>
 
 <!--
 <%= link_to 'Back', politicians_path %>

@@ -34,4 +34,36 @@ module PoliticiansHelper
   def fec_independent_expenditures(options)
     Sunlight::Influence::Politician.fec_independent_expenditures(options)
   end
+
+  def donor_industries_chart(options)
+    industries = top_industries(options)
+    puts industries
+    collect = []
+    industries.each do |industry|
+      collect << industry["amount"].to_f
+    end
+    puts collect
+    base = collect.sum
+    chart = []
+    industries.each do |industry|
+      chart << [industry["name"].downcase.capitalize.to_s, ((industry["amount"].to_f/base)*100).round(2)]
+    end
+    chart
+  end
+
+  def donor_contributors_chart(options)
+    contributors = top_contributors(options)
+    puts contributors
+    collect = []
+    contributors.each do |contributor|
+      collect << contributor["total_amount"].to_f
+    end
+    puts collect
+    base = collect.sum
+    chart = []
+    contributors.each do |contributor|
+      chart << [contributor["name"].downcase.capitalize.to_s, ((contributor["total_amount"].to_f/base)*100).round(2)]
+    end
+    chart
+  end
 end

@@ -66,4 +66,55 @@ module PoliticiansHelper
     end
     chart
   end
+
+  def test_function(name)
+    totals = collect_totals(name)
+    overview = contribution_overview(totals)
+    contribution_amount_key(overview)
+  end
+
+  def collect_totals(name)
+    Sunlight::Influence::EntitySearch.retrieve_overview(search: name)["totals"]
+  end
+
+  def convert_to_array(array)
+    array.each {|h| h.to_a }
+  end
+
+  def contribution_overview(hash)
+    collect = []
+    hash.each_key {|k| collect << {"#{k}" => "#{hash[k]["recipient_amount"]}"}}
+    collect.delete_if {|h| h["-1"]}
+  end
+
+  def count_overview(hash)
+    collect = []
+    hash.each_key {|k| collect << {"#{k}" => "#{hash[k]["recipient_count"]}"}}
+    collect.delete_if {|h| h["-1"]}
+  end
+
+  def contribution_amount_key(array)
+    collect = []
+    array.each {|object| collect << object.keys.first.to_i }
+    collect
+  end
+
+  def contribution_amount_value(array)
+    collect = []
+    array.each {|object| collect << object.values.first.to_i }
+    collect
+  end
+
+  def contribution_count_key(array)
+    keys = []
+    array.each {|object| keys << object.keys.first.to_i }
+    keys
+  end
+
+  def contribution_count_value(array)
+    keys = []
+    array.each {|object| keys << object.values.first.to_i }
+    keys
+  end
+
 end

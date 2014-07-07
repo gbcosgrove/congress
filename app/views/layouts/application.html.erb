@@ -9,11 +9,10 @@
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+    <%= javascript_include_tag "application" %>
+
     <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="/http://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 
@@ -29,6 +28,10 @@
 
 
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <script>
+      $('.formatted-data-table').dataTable({
+        "sPaginationType": "foundation"
+      });
+    </script>
   </body>
 </html>

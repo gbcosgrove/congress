@@ -27,18 +27,6 @@
           <strong>Birthdate:</strong>
           <%= @politician.birthdate.to_date.to_formatted_s(:long_ordinal) %>
           <br>
-          <strong>Bioguide:</strong>
-          <%= @politician.bioguide_id %>
-     <!--      <br>
-          <strong>Votesmart:</strong>
-          <%= @politician.votesmart_id %>
-          <br>
-          <strong>Govtrack:</strong>
-          <%= @politician.govtrack_id %>
-          <br>
-          <strong>Crp:</strong>
-          <%= @politician.crp_id %>
-          <br> -->
       </div>
       <div>
 
@@ -48,7 +36,7 @@
 
 
   <div id="donors">
-      <div class="tabs-content">
+      <div class="tabs-content active">
         <div class="content active" id="panel2-1">
           <div class="large-5 columns">
             <table class="formatted-data-table">
@@ -76,40 +64,49 @@
                 </tbody>
             </table>
           </div>
-          <div id="container" class="large-5 columns"></div>
+          <div id="industry-chart" class="large-5 columns"></div>
         </div>
 
         <div class="content" id="panel2-2">
-          <div id="contributors-chart" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
-         <table class="formatted-data-table">
-            <h3>Top Donor Organizations</h3>
-            <thead class="t-head">
-              <tr>
-                <th>Category</th>
-                <th>Count</th>
-                <th>Total</th>
-                <th>Employees</th>
-                <th>Direct</th>
-              </tr>
-            </thead>
-              <tbody>
-                  <% first = @politician.firstname %>
-                  <% puts first %>
-                  <% last = @politician.last_name %>
-                  <% puts last %>
-                  <% contributors = top_contributors(name: name, cycle: "2012") %>
-                  <% contributors.each do |contributor| %>
-                  <tr>
-                    <td><%= contributor["name"] %></td>
-                    <td><%= contributor["total_count"] %></td>
-                    <td>$<%= contributor["total_amount"] %></td>
-                    <td>$<%= contributor["employee_amount"] %></td>
-                    <td>$<%= contributor["direct_amount"] %></td>
-                  </tr>
-                <% end %>
-              </tbody>
+          <div class="large-5 columns">
+           <table class="formatted-data-table">
+              <h3>Top Donor Organizations</h3>
+              <thead class="t-head">
+                <tr>
+                  <th>Category</th>
+                  <th>Count</th>
+                  <th>Total</th>
+                  <th>Employees</th>
+                  <th>Direct</th>
+                </tr>
+              </thead>
+                <tbody>
+                    <% first = @politician.firstname %>
+                    <% puts first %>
+                    <% last = @politician.last_name %>
+                    <% puts last %>
+                    <% contributors = top_contributors(name: name, cycle: "2012") %>
+                    <% contributors.each do |contributor| %>
+                    <tr>
+                      <td><%= contributor["name"] %></td>
+                      <td><%= contributor["total_count"] %></td>
+                      <td>$<%= contributor["total_amount"] %></td>
+                      <td>$<%= contributor["employee_amount"] %></td>
+                      <td>$<%= contributor["direct_amount"] %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
 
-          </table>
+            </table>
+          </div>
+          <div id="contributors-chart" class="large-5 columns"></div>
+        </div>
+        <div class="content" id="panel2-3">
+          <% entity = Sunlight::Influence::EntitySearch.retrieve_overview(search: name) %>
+          <%= entity["metadata"]["bio"].html_safe %>
+        </div>
+        <div class="content" id="panel2-4">
+          <p>Fourth panel content goes here...</p>
         </div>
       </div>
   </div>
@@ -125,7 +122,7 @@
 
 <script>
 $(function () {
-    $('#container').highcharts({
+    $('#industry-chart').highcharts({
         chart: {
             type: 'pie',
             options3d: {
@@ -163,11 +160,11 @@ $(function () {
 
 <script>
 $(function () {
-    $('#contributors-chart').highcharts({
+    var contribChart = $('#contributors-chart').highcharts({
         chart: {
             type: 'pie',
             options3d: {
-              enabled: true,
+              enabled: false,
                 alpha: 45,
                 beta: 0
             }
@@ -195,6 +192,10 @@ $(function () {
             data: <%= contributors_chart %>,
         }]
     });
+
+    $('.tab').on('click', function() {
+      contribChart.APICall();
+    })
 });
 
 </script>

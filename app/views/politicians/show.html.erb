@@ -1,6 +1,12 @@
 
 <p id="notice"><%= notice %></p>
-  <div class="large-3 columns">
+<ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#panel2-1">Top Industries</a></li>
+      <li class="tab-title"><a href="#panel2-2">Top Organizations</a></li>
+      <li class="tab-title"><a href="#panel2-3">Bio</a></li>
+      <li class="tab-title"><a href="#panel2-4">History</a></li>
+</ul>
+  <div class="large-2 columns">
       <p id='congress-name'>
       <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
       </p>
@@ -41,40 +47,36 @@
 
 
 
-  <div class="large-8 columns" id="donors">
-    <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#panel2-1">Top Industries</a></li>
-      <li class="tab-title"><a href="#panel2-2">Top Orgs</a></li>
-      <li class="tab-title"><a href="#panel2-3">Tab 3</a></li>
-      <li class="tab-title"><a href="#panel2-4">Tab 4</a></li>
-    </ul>
+  <div id="donors">
       <div class="tabs-content">
         <div class="content active" id="panel2-1">
-          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-          <table class="formatted-data-table">
-            <h3>Top Donor Categories</h3>
-            <thead class="t-head">
-              <tr>
-                <th>Category</th>
-                <th>Count</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-              <tbody>
-                  <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
-                  <% chart = data.to_json.html_safe %>
-                  <% name = "#{@politician.firstname} #{@politician.last_name}" %>
-                  <% puts name %>
-                  <% industries = top_industries(name: name, cycle:"2012") %>
-                  <% industries.each do |industry| %>
-                  <tr>
-                    <td><%= industry["name"].downcase.capitalize %></td>
-                    <td><%= industry["count"] %></td>
-                    <td>$<%= industry["amount"] %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-          </table>
+          <div class="large-5 columns">
+            <table class="formatted-data-table">
+              <h3>Top Donor Categories</h3>
+              <thead class="t-head">
+                <tr>
+                  <th>Category</th>
+                  <th>Count</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+                <tbody>
+                    <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+                    <% chart = data.to_json.html_safe %>
+                    <% name = "#{@politician.firstname} #{@politician.last_name}" %>
+                    <% puts name %>
+                    <% industries = top_industries(name: name, cycle:"2012") %>
+                    <% industries.each do |industry| %>
+                    <tr>
+                      <td><%= industry["name"].downcase.capitalize %></td>
+                      <td><%= industry["count"] %></td>
+                      <td>$<%= industry["amount"] %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+          </div>
+          <div id="container" class="large-5 columns"></div>
         </div>
 
         <div class="content" id="panel2-2">
@@ -165,7 +167,7 @@ $(function () {
         chart: {
             type: 'pie',
             options3d: {
-        enabled: true,
+              enabled: true,
                 alpha: 45,
                 beta: 0
             }

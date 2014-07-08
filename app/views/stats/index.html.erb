@@ -1,0 +1,108 @@
+<ul class="tabs" data-tab>
+  <li class="tab-title active"><a href="#panel2-1">Politicians</a></li>
+  <li class="tab-title"><a href="#panel2-2">Individuals</a></li>
+  <li class="tab-title"><a href="#panel2-3">Organizations</a></li>
+  <li class="tab-title"><a href="#panel2-4">Industries</a></li>
+</ul>
+<div class="tabs-content">
+  <div class="content active" id="panel2-1">
+    <div id="table-container">
+        <table id="format-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Seat</th>
+                <th>Party</th>
+                <th>State</th>
+                <th>Total Amount</th>
+                <th>Donation Count</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @top_pols.each do |politician| %>
+                <tr>
+                  <% m = Madison.new %>
+                  <td><%= politician["name"].titleize %></td>
+                  <td><%= politician["seat"] %></td>
+                  <td><%= party_abbrev(politician["party"]) %></td>
+                  <td><%= m.get_name(politician["state"]) %></td>
+                  <td>$<%= number_with_delimiter(politician["amount"]) %></td>
+                  <td><%= number_with_delimiter(politician["count"]) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+  </div>
+  <div class="content" id="panel2-2">
+    <div id="table-container">
+        <table class="format-table-1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th>Donation Count</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @top_ind.each do |individual| %>
+                <tr>
+                  <td><%= individual["name"].titleize %></td>
+                  <td>$<%= number_with_delimiter(individual["amount"]) %></td>
+                  <td><%= number_with_delimiter(individual["count"]) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+  </div>
+  <div class="content" id="panel2-3">
+    <div id="table-container">
+        <table class="format-table-1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th>Donation Count</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @top_orgs.each do |organization| %>
+                <tr>
+                  <td><%= organization["name"].titleize %></td>
+                  <td>$<%= number_with_delimiter(organization["amount"]) %></td>
+                  <td><%= number_with_delimiter(organization["count"]) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+  </div>
+  <div class="content" id="panel2-4">
+    <div id="table-container">
+        <table class="format-table-1">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th>Donation Count</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @top_industries.each do |industry| %>
+                <tr>
+                  <td><%= industry["name"].titleize %></td>
+                  <td>$<%= number_with_delimiter(industry["amount"]) %></td>
+                  <td><%= number_with_delimiter(industry["count"]) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+  </div>
+</div>

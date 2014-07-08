@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('#politician-index-table').dataTable()
+  $('#format-table').dataTable(
+      "order": [[ 4, "desc" ]]
+  )
 
-
-
+jQuery ->
+  $('.format-table-1').dataTable(
+      "order": [[ 1, "desc" ]]
+  )

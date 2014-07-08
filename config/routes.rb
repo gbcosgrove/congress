@@ -8,13 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :politicians, except: [:destroy, :edit]
 
-  resources :searches do
-    resources :pol
-    resources :ind
-    resources :org
-    resources :ind
-    resources :gen
-  end
+  resources :stats
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

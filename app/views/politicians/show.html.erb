@@ -1,23 +1,20 @@
 <div class="row">
 <% m = Madison.new %>
 <div id="name-container">
-  <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>-<%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)
+  <span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>-<%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span>
 </div>
 </div>
-
-
-
-
-<p id="notice"><%= notice %></p>
+<div class="row full-width">
 <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#panel2-1" id="top-industries-button">Top Industries</a></li>
-      <li class="tab-title" id="top-donor-button"><a href="#panel2-2">Top Organizations</a></li>
-      <li class="tab-title"><a href="#panel2-3">Bio</a></li>
-      <li class="tab-title" id="history-button"><a href="#panel2-4">History</a></li>
+      <li class="tab-title active"><a href="#panel2-1">Bio</a></li>
+      <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Top Industries</a></li>
+      <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top Organizations</a></li>
+      <li class="tab-title" id="history-button"><a href="#panel2-4">Contribution History</a></li>
 </ul>
+</div>
 
 
-
+<!--
 
   <div class="large-2 columns">
       <p id='congress-name'>
@@ -45,19 +42,58 @@
       <div>
 
     </div>
-  </div>
-
-
-
-
+  </div> -->
 
   <div id="donors">
 
+      <div class="tabs-content">
+         <!--  tab 1 -->
 
-     <!--  tab 1 -->
-      <div class="tabs-content active">
-        <div class="content active" id="panel2-1">
-          <div class="large-5 columns content-box">
+      <div class="content active" id="panel2-1">
+        <div class="row">
+        <div class="large-3 columns">
+            <% m = Madison.new %>
+            <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
+            </p>
+            <div id='bio-photo'>
+              <img src='https://s3.amazonaws.com/congress-media/bio-pictures/100x125/<%= @politician.bioguide_id %>.jpg' />
+            </div>
+
+              <div class="content-box">
+                <br>
+                <strong>Party:</strong>
+                <%= party_abbrev(@politician.party) %>
+                <br>
+                <strong>State:</strong>
+                <%= m.get_name(@politician.state) %>
+                <br>
+                <strong>District:</strong>
+                <%= @politician.district %>
+                <br>
+                <strong>Birthday:</strong>
+                <%= @politician.birthdate.to_date.to_formatted_s(:long_ordinal) %>
+                <br>
+            </div>
+        <div>
+
+    </div>
+  </div>
+
+          <div class="content-box large-9 columns">
+            <% entity = Sunlight::Influence::EntitySearch.retrieve_overview(search: "#{@politician.firstname} #{@politician.last_name}") %>
+            <%= entity["metadata"]["bio"].html_safe %>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+
+         <!--  tab 2 -->
+        <div class="content" id="panel2-2">
+          <div class="large-6 columns content-box">
             <table class="formatted-data-table ">
               <h3>Top Donor Categories</h3>
               <thead class="t-head">
@@ -82,7 +118,7 @@
                 </tbody>
             </table>
           </div>
-          <div id="industry-chart" class="large-5 columns content-box"></div>
+          <div id="industry-chart" class="large-6 columns content-box"></div>
         </div>
 
 
@@ -90,9 +126,9 @@
 
 
 
-      <!-- tab 2 -->
-        <div class="content" id="panel2-2">
-          <div class="large-5 columns content-box">
+      <!-- tab 3 -->
+        <div class="content" id="panel2-3">
+          <div class="large-6 columns content-box">
            <table class="formatted-data-table">
               <h3>Top Donor Organizations</h3>
               <thead class="t-head">
@@ -121,28 +157,12 @@
 
             </table>
           </div>
-          <div id="contributors-chart" class="large-5 columns"></div>
+          <div id="contributors-chart" class="large-6 columns"></div>
         </div>
-
-
-
-
-
-        <!-- Tab 3 -->
-          <div class="content" id="panel2-3">
-            <div class="large-5 columns content-box">
-            <% entity = Sunlight::Influence::EntitySearch.retrieve_overview(search: name) %>
-            <%= entity["metadata"]["bio"].html_safe %>
-          </div>
-        </div>
-
-
-
-
 
         <!-- Tab 4 -->
         <div class="content" id="panel2-4">
-          <div id="history" class="large-10 columns"></div>
+          <div id="history" class="large-12 columns"></div>
         </div>
       </div>
   </div>

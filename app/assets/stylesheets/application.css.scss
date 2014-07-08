@@ -14,14 +14,14 @@
  *= require_self
  *= require dataTables/jquery.dataTables
  *= require dataTables/jquery.dataTables.foundation
-
+ *= require font-awesome
+ *= fonts
 
 
 
 
  */
-
-@import 'modules/variables';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Roboto:400,100,300,500,700,900);@import 'modules/variables';
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/home';
@@ -30,18 +30,15 @@
 @import 'home.css.scss';
 @import 'partials/datatable';
 @import 'partials/stats';
+@import 'font-awesome';
+@import 'fonts';
 
 body {
   background-color: $gray-2;
 }
 
-@font-face {
-  font-family: 'OpenSans';
-  src:url('OpenSans-Rgular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
-body {
-  font-family: 'OpenSans';
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }

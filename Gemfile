@@ -21,6 +21,8 @@ gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
 
 gem 'font-kit-rails'
+gem 'font-awesome-rails'
+gem 'fontsquirrel-download', '~> 1.1.1'
 
 
 gem 'will_paginate'

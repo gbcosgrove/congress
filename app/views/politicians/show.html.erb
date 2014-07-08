@@ -1,11 +1,24 @@
+<div class="row">
+<% m = Madison.new %>
+<div id="name-container">
+  <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>-<%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)
+</div>
+</div>
+
+
+
 
 <p id="notice"><%= notice %></p>
 <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#panel2-1">Top Industries</a></li>
-      <li class="tab-title"><a href="#panel2-2">Top Organizations</a></li>
+      <li class="tab-title active"><a href="#panel2-1" id="top-industries-button">Top Industries</a></li>
+      <li class="tab-title" id="top-donor-button"><a href="#panel2-2">Top Organizations</a></li>
       <li class="tab-title"><a href="#panel2-3">Bio</a></li>
-      <li class="tab-title"><a href="#panel2-4">History</a></li>
+      <li class="tab-title" id="history-button"><a href="#panel2-4">History</a></li>
 </ul>
+
+
+
+
   <div class="large-2 columns">
       <p id='congress-name'>
       <% m = Madison.new %>
@@ -36,7 +49,12 @@
 
 
 
+
+
   <div id="donors">
+
+
+     <!--  tab 1 -->
       <div class="tabs-content active">
         <div class="content active" id="panel2-1">
           <div class="large-5 columns content-box">
@@ -67,6 +85,12 @@
           <div id="industry-chart" class="large-5 columns content-box"></div>
         </div>
 
+
+
+
+
+
+      <!-- tab 2 -->
         <div class="content" id="panel2-2">
           <div class="large-5 columns content-box">
            <table class="formatted-data-table">
@@ -99,12 +123,24 @@
           </div>
           <div id="contributors-chart" class="large-5 columns"></div>
         </div>
+
+
+
+
+
+        <!-- Tab 3 -->
           <div class="content" id="panel2-3">
             <div class="large-5 columns content-box">
             <% entity = Sunlight::Influence::EntitySearch.retrieve_overview(search: name) %>
             <%= entity["metadata"]["bio"].html_safe %>
           </div>
         </div>
+
+
+
+
+
+        <!-- Tab 4 -->
         <div class="content" id="panel2-4">
           <div id="history" class="large-10 columns"></div>
         </div>
@@ -126,44 +162,49 @@
 </div>
 
 <script>
-$(function () {
-    $('#industry-chart').highcharts({
-        chart: {
-            type: 'pie',
-            options3d: {
-        enabled: false,
-                alpha: 45,
-                beta: 0
-            }
-        },
-        title: {
-            text: 'Top Donor Industries'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                depth: 35,
-                dataLabels: {
-                    enabled: false,
-                    format: '{point.name}'
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Browser share',
-            data: <%= chart %>,
-        }]
-    });
-});
+function loadTopIndustriesChart() {
+  $('#industry-chart').highcharts({
+      chart: {
+          type: 'pie',
+          options3d: {
+      enabled: false,
+              alpha: 45,
+              beta: 0
+          }
+      },
+      title: {
+          text: 'Top Donor Industries'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              depth: 35,
+              dataLabels: {
+                  enabled: false,
+                  format: '{point.name}'
+              }
+          }
+      },
+      series: [{
+          type: 'pie',
+          name: 'Browser share',
+          data: <%= chart %>,
+      }]
+  });
+}
+$(loadTopIndustriesChart);
+
+$('#top-industries-button').on('click', loadTopIndustriesChart);
 
 </script>
 
 <script>
+
+function loadTopDonorsChart() {
 $(function () {
     var contribChart = $('#contributors-chart').highcharts({
         chart: {
@@ -202,9 +243,16 @@ $(function () {
       contribChart.APICall();
     })
 });
+}
+
+$(loadTopDonorsChart);
+
+$('#top-donors-button').on('click', loadTopDonorsChart);
+
 </script>
 
 <script>
+function loadHistoryChart() {
 $(function () {
         $('#history').highcharts({
             chart: {
@@ -278,6 +326,10 @@ $(function () {
             }]
         });
     });
+}
+
+$(loadHistoryChart);
+$('#history-button').on('click', loadHistoryChart);
 
 </script>
 

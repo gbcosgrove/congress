@@ -35,6 +35,13 @@ body {
   background-color: $gray-2;
 }
 
-// .content-box {
-//   background-color: $dm-white;
-// }
+@font-face {
+  font-family: 'OpenSans';
+  src:url('OpenSans-Rgular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'OpenSans';
+}

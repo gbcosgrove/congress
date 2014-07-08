@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
 
+gem 'font-kit-rails'
+
 
 gem 'will_paginate'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

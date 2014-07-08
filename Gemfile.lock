@@ -57,6 +57,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    font-kit-rails (1.0.2)
+      rails
     foundation-rails (5.3.0.1)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   capybara (~> 2.1.0)
   coffee-rails (~> 4.0.0)
   factory_girl_rails
+  font-kit-rails
   foundation-rails (~> 5.3.0.1)
   geocoder
   jbuilder (~> 2.0)

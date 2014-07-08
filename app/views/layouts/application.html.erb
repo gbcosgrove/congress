@@ -16,13 +16,13 @@
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
     <style>
-/*     * {
+     * {
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
           border: 1px solid red;
         }
-*/
+
     </style>
 
 
@@ -32,6 +32,23 @@
   <body>
   <div>
     <nav class="top-bar" data-topbar>
+    <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="nav-button"><a href="#"></a></li>
+      <li class="has-dropdown nav-button">
+        <a href="#"></a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul id="white-logo" class="left">
+      <li><%= image_tag "congress-black-sm.png" %></li>
+    </ul>
+  </section>
 
     </nav>
   </div>

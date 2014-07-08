@@ -37,6 +37,7 @@ gem 'json'
 gem 'whenever'
 # For state abbreviations
 gem 'madison'
+gem 'simple_form'
 
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

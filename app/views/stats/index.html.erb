@@ -1,142 +1,423 @@
+
+
+  <ul class="tabs" data-tab>
+    <li id="top-politicians-button" class="tab-title active"><a href="#panel2-1">Politicians</a></li>
+    <li id="top-individuals-button"class="tab-title"><a href="#panel2-2">Individuals</a></li>
+    <li id="top-organizations-button"class="tab-title"><a href="#panel2-3">Organizations</a></li>
+    <li id="top-industries-button"class="tab-title"><a href="#panel2-4">Industries</a></li>
+  </ul>
+
+
+
+
 <div class="row">
-      <div class="large-5 columns">
-        <form action="/stats" method="get">
-        <label>Cycle
-          <select>
-            <option cycle=""></option>
-            <option cycle="2014">2014</option>
-            <option cycle="2012">2012</option>
-            <option cycle="2010">2010</option>
-            <option cycle="2008">2008</option>
-            <option cycle="2006">2006</option>
-            <option cycle="2004">2004</option>
-            <option cycle="2002">2002</option>
-            <option cycle="2000">2000</option>
-          </select>
-        </label>
+  <div class="tabs-content">
+    <div class="content active" id="panel2-1">
+      <div class="row">
+        <div id="table-container">
+            <table id="format-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Seat</th>
+                    <th>Party</th>
+                    <th>State</th>
+                    <th>Total Amount</th>
+                    <th>Donation Count</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% names = [] %>
+                  <% dollars = [] %>
+                  <% @top_pols.each do |politician| %>
+                    <tr>
+                      <% m = Madison.new %>
+                      <td><%= politician["name"].titleize %></td>
+                      <td><%= politician["seat"] %></td>
+                      <td><%= party_abbrev(politician["party"]) %></td>
+                      <td><%= m.get_name(politician["state"]) %></td>
+                      <td>$<%= number_with_delimiter(politician["amount"]) %></td>
+                      <td><%= number_with_delimiter(politician["count"]) %></td>
+                      <% names.push(politician["name"]) %>
+                      <% dollars.push(number_with_delimiter(politician["amount"]).to_i) %>
+
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="row">
+          <div id="pol-received-bar" class="large-12 columns"></div>
+        </div>
+    </div>
+    <div class="content" id="panel2-2">
+      <div id="table-container">
+          <table class="format-table-1">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Total Amount</th>
+                  <th>Donation Count</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% ind_names = [] %>
+                <% ind_dollars = [] %>
+                <% @top_ind.each do |individual| %>
+                  <tr>
+                    <td><%= individual["name"].titleize %></td>
+                    <td>$<%= number_with_delimiter(individual["amount"]) %></td>
+                    <td><%= number_with_delimiter(individual["count"]) %></td>
+                    <% ind_names.push(individual["name"]) %>
+                      <% ind_dollars.push(number_with_delimiter(individual["amount"]).to_i) %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div id="indiv-contrib-bar" class="large-12 columns"></div>
+        </div>
+    </div>
+    <div class="content" id="panel2-3">
+      <div id="table-container">
+          <table class="format-table-1">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Total Amount</th>
+                  <th>Donation Count</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% org_names = [] %>
+                <% org_dollars = [] %>
+                <% @top_orgs.each do |organization| %>
+                  <tr>
+                    <td><%= organization["name"].titleize %></td>
+                    <td>$<%= number_with_delimiter(organization["amount"]) %></td>
+                    <td><%= number_with_delimiter(organization["count"]) %></td>
+                    <% org_names.push(organization["name"]) %>
+                      <% org_dollars.push(number_with_delimiter(organization["amount"]).to_i) %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div id="org-contrib-bar" class="large-12 columns"></div>
+          </div>
+
+    </div>
+    <div class="content" id="panel2-4">
+      <div id="table-container">
+          <table class="format-table-1">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Total Amount</th>
+                  <th>Donation Count</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% industry_names = [] %>
+                <% industry_dollars = [] %>
+                <% @top_industries.each do |industry| %>
+                  <tr>
+                    <td><%= industry["name"].titleize %></td>
+                    <td>$<%= number_with_delimiter(industry["amount"]) %></td>
+                    <td><%= number_with_delimiter(industry["count"]) %></td>
+                    <% industry_names.push(industry["name"]) %>
+                    <% industry_dollars.push(industry["amount"].to_i) %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+      <div class="row">
+        <div id="industry-contrib-bar" class="large-12 columns"></div>
       </div>
-      <div class="large-5 columns">
-        <label>Limit
-          <select>
-            <option limit=""></option>
-            <option limit="100">100</option>
-            <option limit="75">75</option>
-            <option limit="50">50</option>
-            <option limit="25">25</option>
-            <option limit="10">10</option>
-          </select>
-        </label>
-      </div>
-      <input name="commit" type="submit" value="Search" />
-    </form>
+    </div>
+
   </div>
+
 </div>
 
-<ul class="tabs" data-tab>
-  <li class="tab-title active"><a href="#panel2-1">Politicians</a></li>
-  <li class="tab-title"><a href="#panel2-2">Individuals</a></li>
-  <li class="tab-title"><a href="#panel2-3">Organizations</a></li>
-  <li class="tab-title"><a href="#panel2-4">Industries</a></li>
-</ul>
-<div class="tabs-content">
-  <div class="content active" id="panel2-1">
-    <div id="table-container">
-        <table id="format-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Seat</th>
-                <th>Party</th>
-                <th>State</th>
-                <th>Total Amount</th>
-                <th>Donation Count</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <% @top_pols.each do |politician| %>
-                <tr>
-                  <% m = Madison.new %>
-                  <td><%= politician["name"].titleize %></td>
-                  <td><%= politician["seat"] %></td>
-                  <td><%= party_abbrev(politician["party"]) %></td>
-                  <td><%= m.get_name(politician["state"]) %></td>
-                  <td>$<%= number_with_delimiter(politician["amount"]) %></td>
-                  <td><%= number_with_delimiter(politician["count"]) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-  </div>
-  <div class="content" id="panel2-2">
-    <div id="table-container">
-        <table class="format-table-1">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Total Amount</th>
-                <th>Donation Count</th>
-              </tr>
-            </thead>
+<div>
+  <% name = names[0..9].to_json.html_safe %>
+  <% dollar = dollars[0..9].to_json.html_safe %>
+  <% ind_name = ind_names[0..9].to_json.html_safe %>
+  <% ind_dollar = ind_dollars[0..9].to_json.html_safe %>
+  <% org_name = org_names[0..9].to_json.html_safe %>
+  <% org_dollar = org_dollars[0..9].to_json.html_safe %>
+  <% industry_name = industry_names[0..9].to_json.html_safe %>
+  <% industry_dollar = industry_dollars[0..9].to_json.html_safe %>
 
-            <tbody>
-              <% @top_ind.each do |individual| %>
-                <tr>
-                  <td><%= individual["name"].titleize %></td>
-                  <td>$<%= number_with_delimiter(individual["amount"]) %></td>
-                  <td><%= number_with_delimiter(individual["count"]) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-  </div>
-  <div class="content" id="panel2-3">
-    <div id="table-container">
-        <table class="format-table-1">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Total Amount</th>
-                <th>Donation Count</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <% @top_orgs.each do |organization| %>
-                <tr>
-                  <td><%= organization["name"].titleize %></td>
-                  <td>$<%= number_with_delimiter(organization["amount"]) %></td>
-                  <td><%= number_with_delimiter(organization["count"]) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-
-  </div>
-  <div class="content" id="panel2-4">
-    <div id="table-container">
-        <table class="format-table-1">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Total Amount</th>
-                <th>Donation Count</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @top_industries.each do |industry| %>
-                <tr>
-                  <td><%= industry["name"].titleize %></td>
-                  <td>$<%= number_with_delimiter(industry["amount"]) %></td>
-                  <td><%= number_with_delimiter(industry["count"]) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-  </div>
 </div>
+
+<script>
+
+$(function () {
+        $('#pol-received-bar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 Politicians by Contributions Received'
+            },
+            subtitle: {
+                text: 'Source: Sunlight Foundation'
+            },
+            xAxis: {
+                categories: <%= name %>,
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '$USD (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '$USD'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '2012 Cycle',
+                data: <%= dollar %>,
+            }]
+        });
+    });
+</script>
+
+<script>
+
+function loadTopIndividuals () {
+$(function () {
+        $('#indiv-contrib-bar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 Individuals by Contributions Given'
+            },
+            subtitle: {
+                text: 'Source: Sunlight Foundation'
+            },
+            xAxis: {
+                categories: <%= ind_name %>,
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '$USD (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '$USD'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '2012 Cycle',
+                data: <%= ind_dollar %>,
+            }]
+        });
+    });
+}
+
+$(loadTopIndividuals);
+
+$('#top-individuals-button').on('click', loadTopIndividuals);
+</script>
+
+<script>
+
+function loadTopOrganizations() {
+$(function () {
+        $('#org-contrib-bar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 Organizations by Contributions Given'
+            },
+            subtitle: {
+                text: 'Source: Sunlight Foundation'
+            },
+            xAxis: {
+                categories: <%= org_name %>,
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '$USD (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '$USD'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '2012 Cycle',
+                data: <%= org_dollar %>,
+            }]
+        });
+    });
+}
+$(loadTopOrganizations);
+
+$('#top-organizations-button').on('click', loadTopOrganizations);
+</script>
+
+<script>
+function loadTopIndustries() {
+$(function () {
+        $('#industry-contrib-bar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Top 10 Industries by Contributions Given'
+            },
+            subtitle: {
+                text: 'Source: Sunlight Foundation'
+            },
+            xAxis: {
+                categories: <%= industry_name %>,
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '$USD (millions)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: '$USD'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '2012 Cycle',
+                data: <%= industry_dollar %>,
+            }]
+        });
+    });
+}
+
+$(loadTopIndustries);
+
+$('#top-industries-button').on('click', loadTopIndustries);
+</script>

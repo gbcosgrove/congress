@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :politicians, except: [:destroy, :edit]
 
   resources :stats
+  resources :contractors, except: [:destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

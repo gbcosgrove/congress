@@ -35,6 +35,16 @@ module PoliticiansHelper
     Sunlight::Influence::Politician.fec_independent_expenditures(options)
   end
 
+  def party_abbrev(name)
+    if name == "R"
+      "Republican"
+    elsif name == "D"
+      "Democrat"
+    elsif name == "I"
+      "Independent"
+    end
+  end
+
   def donor_industries_chart(options)
     industries = top_industries(options)
     puts industries

@@ -17,6 +17,7 @@
     </thead>
 
     <tbody>
+      <% m = Madison.new %>
       <% @politicians.each do |politician| %>
         <tr>
           <td>
@@ -24,8 +25,8 @@
           </td>
           <td><%= politician.title %></td>
           <td><%= politician.firstname %> <%= politician.last_name %></td>
-          <td><%= politician.party %></td>
-          <td><%= politician.state %></td>
+          <td><%= party_abbrev(politician.party) %></td>
+          <td><%= m.get_name(politician.state) %></td>
           <td><%= politician.district %></td>
           <td><%= politician.birthdate.to_date.to_formatted_s(:long_ordinal) %></td>
           <td><%= link_to 'Show', politician %></td>

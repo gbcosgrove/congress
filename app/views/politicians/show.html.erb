@@ -8,6 +8,7 @@
 </ul>
   <div class="large-2 columns">
       <p id='congress-name'>
+      <% m = Madison.new %>
       <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
       </p>
       <div id='bio-photo'>
@@ -16,10 +17,10 @@
 
       <div class="content-box">
           <strong>Party:</strong>
-          <%= @politician.party %>
+          <%= party_abbrev(@politician.party) %>
           <br>
           <strong>State:</strong>
-          <%= @politician.state %>
+          <%= m.get_name(@politician.state) %>
           <br>
           <strong>District:</strong>
           <%= @politician.district %>

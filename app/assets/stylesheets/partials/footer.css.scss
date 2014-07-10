@@ -1,11 +1,12 @@
-
-footer {
-  background-color: $dark-red;
-  height: 50px;
-  clear: both;
-  opacity: 0.1;
-  position: fixed;
-
+.footer-bottom {
+  background: $d-green;
+  padding: 14px 0 10px;
+  height: 10em;
+}
+.footer-bottom .design-border {
+  border-bottom: 1px solid #484848;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 

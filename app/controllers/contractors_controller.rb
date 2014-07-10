@@ -4,7 +4,6 @@ class ContractorsController < ApplicationController
   # GET /contractors
   # GET /contractors.json
   def index
-    create
   end
 
   # GET /contractors/1

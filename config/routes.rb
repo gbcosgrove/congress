@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :stats
   resources :contractors, except: [:destroy]
+  resources :contributions
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -9,11 +9,15 @@
   width: 80%;
 }
 
+.right {
+  color: #d8d7c4;
+}
+
 .nav-button {
   height: 4.8em;
   width: 7em;
   padding-right: 10%;
-  background-color: $dm-black;
+  background-color: red;
   padding-right: 10px;
 }
 
@@ -23,5 +27,18 @@
 
 #white-logo {
   margin-left: 5%;
+}
+
+.top-bar .top-bar-section .button-group .button {
+  background-color: $dm-black;
+  width: 15em;
+  height: 72px;
+  padding-top: 30px;
+
+}
+
+.top-bar .top-bar-section .button-group a {
+  background-color: $dm-black;
+
 }
 

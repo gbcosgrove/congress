@@ -35,13 +35,12 @@
     <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="nav-button"><a href="#"></a></li>
-      <li class="has-dropdown nav-button">
-        <a href="#"></a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-        </ul>
-      </li>
+      <ul class="button-group radius even-4">
+          <li><a class="button" href="/">Home</a></li>
+          <li><a class="button" href="politicians#index">Congress</a></li>
+          <li><a class="button" href="about/about">About</a></li>
+          <li><a class="button" href="#">Data</a></li>
+      </ul>
     </ul>
 
     <!-- Left Nav Section -->
@@ -55,6 +54,16 @@
 
 
     <%= yield %>
+
+<div class="footer-bottom">
+  <div class="row">
+    <div class="eight columns">
+    </div>
+    <div class="four columns">
+     </div>
+
+  </div>
+</div>
     <script>
       $('.formatted-data-table').dataTable({
         "sPaginationType": "foundation"

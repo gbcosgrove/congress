@@ -33,6 +33,11 @@ sunlight-influence.md
 * self.lobbying_clients(options)
 * self.lobbying_issues(options)
 
+## Notes
+ <!-- <td><%= m.get_name(politician.state) %></td> -->
+ <!-- <td><%= politician.birthdate.to_date.to_formatted_s(:long_ordinal) %></td> -->
+
+
 ### industry
 
 * self.industry_id_lookup(args)

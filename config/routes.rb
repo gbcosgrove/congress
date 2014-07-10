@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :contractors, except: [:destroy]
   resources :contributions
 
+  get 'about#about'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

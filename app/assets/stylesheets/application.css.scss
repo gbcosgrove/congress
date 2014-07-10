@@ -56,10 +56,18 @@ body {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 100px;
+    height: 50px;
     width: 100%;
 }
 
 table {
   font-weight: bold;
+}
+
+.container-border {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid black;
+
 }

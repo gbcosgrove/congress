@@ -4,7 +4,11 @@ class PoliticiansController < ApplicationController
   # GET /politicians
   # GET /politicians.json
   def index
-    @politicians = Politician.all
+    if params[:search]
+      @politicians = Politician.search(params[:search]).order("last_name DESC")
+    else
+      @politicians = Politician.all
+    end
   end
 
   # GET /politicians/1
@@ -36,6 +40,8 @@ class PoliticiansController < ApplicationController
       end
     end
   end
+
+
 
 
 
@@ -71,6 +77,6 @@ class PoliticiansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def politician_params
-      params[:politician]
+      params.require(:politician).permit(:chamber, :firstname, :last_name, :state_name, :state, :district)
     end
 end

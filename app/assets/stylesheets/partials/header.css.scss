@@ -27,11 +27,12 @@
 
 #white-logo {
   margin-left: 5%;
+  position: absolute;
 }
 
 .top-bar .top-bar-section .button-group .button {
   background-color: $dm-black;
-  width: 15em;
+  width: 9em;
   height: 72px;
   padding-top: 30px;
 
@@ -39,7 +40,7 @@
 
 .top-bar .top-bar-section .button-group a {
   background-color: $dm-black;
+  font-size: 20px;
 
 }
-
 

@@ -1,17 +1,17 @@
 <div class="row">
 <% m = Madison.new %>
 <div id="name-container">
-  <span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>-<%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span>
+  <span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong> - <%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span>
 </div>
 </div>
 <div class="row full-width">
-<ul class="tabs" id="pol-tab" data-tab>
-      <li class="tab-title active"><a href="#panel2-1">Bio</a></li>
-      <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Top<br>Industries</a></li>
-      <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top<br>Organizations</a></li>
-      <li class="tab-title" id="history-button"><a href="#panel2-4">ContributionHistory</a></li>
-      <li class="tab-title" id="breakdown-button"><a href="#panel2-5">Breakdown</a></li>
-</ul>
+  <ul class="tabs large-12 columns" id="pol-tab" data-tab>
+        <li class="tab-title active"><a href="#panel2-1">Bio</a></li>
+        <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Industries</a></li>
+        <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top Orgs</a></li>
+        <li class="tab-title" id="history-button"><a href="#panel2-4">History</a></li>
+        <li class="tab-title" id="breakdown-button"><a href="#panel2-5">Breakdown</a></li>
+  </ul>
 </div>
 
   <div id="donors">
@@ -64,31 +64,37 @@
          <!--  tab 2 -->
         <div class="content" id="panel2-2">
           <div class="row container full-width">
+            <h3><span class="data-box">Top Donor Industries</span></h3>
             <div class="large-6 columns content-box">
-              <table class="formatted-data-table ">
-                <thead class="t-head">
-                  <tr>
-                    <th>Category</th>
-                    <th>Count</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                      <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
-                      <% chart = data.to_json.html_safe %>
-                      <% name = "#{@politician.firstname} #{@politician.last_name}" %>
-                      <% industries = top_industries(name: name, cycle:"2012") %>
-                      <% industries.each do |industry| %>
-                      <tr>
-                        <td><%= industry["name"].downcase.capitalize %></td>
-                        <td><%= industry["count"] %></td>
-                        <td>$<%= industry["amount"] %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-              </table>
+              <div class="data-box data-spacer">
+                <table class="formatted-data-table">
+                  <thead class="t-head">
+                    <tr>
+                      <th>Category</th>
+                      <th>Count</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                        <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+                        <% chart = data.to_json.html_safe %>
+                        <% name = "#{@politician.firstname} #{@politician.last_name}" %>
+                        <% industries = top_industries(name: name, cycle:"2012") %>
+                        <% industries.each do |industry| %>
+                        <tr>
+                          <td><%= industry["name"].downcase.capitalize %></td>
+                          <td><%= industry["count"] %></td>
+                          <td>$<%= industry["amount"] %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                </table>
+              </div>
             </div>
-            <div id="industry-chart" class="large-6 columns content-box"></div>
+
+              <div id="industry-chart" class="large-6 columns content-box data-box">
+              </div>
+
           </div>
         </div>
 
@@ -99,47 +105,67 @@
 
       <!-- tab 3 -->
         <div class="content" id="panel2-3">
-          <div class="large-6 columns content-box">
-           <table class="formatted-data-table">
-              <h3>Top Donor Organizations</h3>
-              <thead class="t-head">
-                <tr>
-                  <th>Category</th>
-                  <th>Count</th>
-                  <th>Total</th>
-                  <th>Employees</th>
-                  <th>Direct</th>
-                </tr>
-              </thead>
-                <tbody>
-                    <% first = @politician.firstname %>
-                    <% last = @politician.last_name %>
-                    <% contributors = top_contributors(name: name, cycle: "2012") %>
-                    <% contributors.each do |contributor| %>
-                    <tr>
-                      <td><%= contributor["name"] %></td>
-                      <td><%= contributor["total_count"] %></td>
-                      <td>$<%= contributor["total_amount"] %></td>
-                      <td>$<%= contributor["employee_amount"] %></td>
-                      <td>$<%= contributor["direct_amount"] %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
+          <div class="row full-width container">
+            <h3>Top Donor Organizations</h3>
+            <div class="large-6 columns content-box">
+              <div class="data-box">
+               <table class="formatted-data-table">
 
-            </table>
+                  <thead class="t-head">
+                    <tr>
+                      <th>Category</th>
+                      <th>Count</th>
+                      <th>Total</th>
+                      <th>Employees</th>
+                      <th>Direct</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                        <% first = @politician.firstname %>
+                        <% last = @politician.last_name %>
+                        <% contributors = top_contributors(name: name, cycle: "2012") %>
+                        <% contributors.each do |contributor| %>
+                        <tr>
+                          <td><%= contributor["name"] %></td>
+                          <td><%= contributor["total_count"] %></td>
+                          <td>$<%= contributor["total_amount"] %></td>
+                          <td>$<%= contributor["employee_amount"] %></td>
+                          <td>$<%= contributor["direct_amount"] %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+
+                </table>
+              </div>
+            </div>
+            <div class="data-box">
+              <div id="contributors-chart" class="large-6 columns"></div>
+            </div>
           </div>
-          <div id="contributors-chart" class="large-6 columns"></div>
         </div>
 
         <!-- Tab 4 -->
-        <div class="content" id="panel2-4">
-          <div id="history" class="large-12 columns"></div>
-        </div>
+
+          <div class="content" id="panel2-4">
+            <div class="row full-width container">
+              <h3>Contribution Totals and Counts Over Time</h3>
+              <div class="data-box">
+                <div id="history" class="large-12 columns"></div>
+              </div>
+            </div>
+          </div>
         <!-- Tab 5 -->
-       <div class="content" id="panel2-5">
-            <div id="breakdown-local" class="large-6 columns container"></div>
-            <div id="breakdown-type"  class="large-6 columns container"></div>
-       </div>
+
+           <div class="content" id="panel2-5">
+             <div class="row full-width container">
+                <h3>Contribution Breakdowns</h3>
+
+                  <div id="breakdown-local" class="large-6 columns data-box"></div>
+
+                  <div id="breakdown-type"  class="large-6 columns data-box"></div>
+                </div>
+            </div>
+          </div>
       </div>
 
 

@@ -92,7 +92,7 @@
               </div>
             </div>
 
-              <div id="industry-chart" class="large-6 columns content-box data-box">
+              <div id="industry-chart" class="large-6 columns content-box chart-box">
               </div>
 
           </div>
@@ -138,9 +138,7 @@
                 </table>
               </div>
             </div>
-            <div class="data-box">
-              <div id="contributors-chart" class="large-6 columns"></div>
-            </div>
+              <div id="contributors-chart" class="large-6 columns chart-box"></div>
           </div>
         </div>
 
@@ -149,9 +147,7 @@
           <div class="content" id="panel2-4">
             <div class="row full-width container">
               <h3>Contribution Totals and Counts Over Time</h3>
-              <div class="data-box">
-                <div id="history" class="large-12 columns"></div>
-              </div>
+                <div id="history" class="large-12 columns data-box"></div>
             </div>
           </div>
         <!-- Tab 5 -->
@@ -160,9 +156,9 @@
              <div class="row full-width container">
                 <h3>Contribution Breakdowns</h3>
 
-                  <div id="breakdown-local" class="large-6 columns data-box"></div>
+                  <div id="breakdown-local" class="large-6 columns chart-box"></div>
 
-                  <div id="breakdown-type"  class="large-6 columns data-box"></div>
+                  <div id="breakdown-type"  class="large-6 columns chart-box"></div>
                 </div>
             </div>
           </div>
@@ -225,7 +221,7 @@ function loadTopIndustriesChart() {
               cursor: 'pointer',
               depth: 35,
               dataLabels: {
-                  enabled: false,
+                  enabled: true,
                   format: '{point.name}'
               }
           }

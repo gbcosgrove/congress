@@ -1,11 +1,12 @@
 
-
-  <ul class="tabs" data-tab>
+<div class="row full-width">
+  <ul class="tabs large-12 columns" data-tab>
     <li id="top-politicians-button" class="tab-title active"><a href="#panel2-1">Politicians</a></li>
     <li id="top-individuals-button"class="tab-title"><a href="#panel2-2">Individuals</a></li>
     <li id="top-organizations-button"class="tab-title"><a href="#panel2-3">Organizations</a></li>
     <li id="top-industries-button"class="tab-title"><a href="#panel2-4">Industries</a></li>
   </ul>
+</div>
 
 
 
@@ -14,7 +15,7 @@
   <div class="tabs-content">
     <div class="content active" id="panel2-1">
       <div class="row">
-        <div id="table-container">
+        <div class="table-container">
             <table id="format-table">
                 <thead>
                   <tr>
@@ -48,12 +49,16 @@
               </table>
             </div>
         </div>
-        <div class="row">
-          <div id="pol-received-bar" class="large-12 columns"></div>
+        <div class="row contain-row">
+          <div id="pol-received-bar" class="large-12 columns chart-contain"></div>
         </div>
     </div>
+
+
+
     <div class="content" id="panel2-2">
-      <div id="table-container">
+      <div class="row">
+        <div class="table-container">
           <table class="format-table-1">
               <thead>
                 <tr>
@@ -77,13 +82,17 @@
                 <% end %>
               </tbody>
             </table>
-          </div>
-          <div class="row">
-            <div id="indiv-contrib-bar" class="large-12 columns"></div>
         </div>
     </div>
+        <div class="row contain-row">
+            <div id="indiv-contrib-bar" class="large-12 columns chart-contain large-chart"></div>
+        </div>
+    </div>
+
+
+
     <div class="content" id="panel2-3">
-      <div id="table-container">
+      <div class="row table-container">
           <table class="format-table-1">
               <thead>
                 <tr>
@@ -107,14 +116,15 @@
                 <% end %>
               </tbody>
             </table>
-          </div>
-          <div class="row">
-            <div id="org-contrib-bar" class="large-12 columns"></div>
-          </div>
+       </div>
+
+      <div class="row contain-row">
+        <div id="org-contrib-bar" class="large-12 columns chart-contain large-chart"></div>
+      </div>
 
     </div>
     <div class="content" id="panel2-4">
-      <div id="table-container">
+      <div class="row row-contain">
           <table class="format-table-1">
               <thead>
                 <tr>
@@ -139,8 +149,8 @@
               </tbody>
             </table>
           </div>
-      <div class="row">
-        <div id="industry-contrib-bar" class="large-12 columns"></div>
+      <div class="row contain-row">
+        <div id="industry-contrib-bar" class="chart-contain large-12 columns large-chart"></div>
       </div>
     </div>
 

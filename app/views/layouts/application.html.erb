@@ -38,8 +38,8 @@
       <ul class="button-group radius even-4">
           <li><a class="button" href="/">Home</a></li>
           <li><a class="button" href="politicians#index">Congress</a></li>
-          <li><a class="button" href="about/about">About</a></li>
-          <li><a class="button" href="#">Data</a></li>
+          <li><a class="button" href="stats#index">Stats</a></li>
+          <li><a class="button" href="">About</a></li>
       </ul>
     </ul>
 
@@ -55,7 +55,7 @@
 
     <%= yield %>
 
-<div class="footer-bottom">
+<div id="footer">
   <div class="row">
     <div class="eight columns">
     </div>
@@ -68,6 +68,21 @@
       $('.formatted-data-table').dataTable({
         "sPaginationType": "foundation"
       });
+    </script>
+    <script>
+          $(window).bind("load", function () {
+          var footer = $("#footer");
+          var pos = footer.position();
+          var height = $(window).height();
+          height = height - pos.top;
+          height = height - footer.height();
+          if (height > 0) {
+              footer.css({
+                  'margin-top': height + 'px'
+              });
+          }
+      });
+
     </script>
   </body>
 </html>

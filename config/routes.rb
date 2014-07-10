@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :search_parameters
+
+  resources :searches
+
   resources :politicians
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,23 @@
+<h1>Listing search_parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_parameters.each do |search_parameter| %>
+      <tr>
+        <td><%= link_to 'Show', search_parameter %></td>
+        <td><%= link_to 'Edit', edit_search_parameter_path(search_parameter) %></td>
+        <td><%= link_to 'Destroy', search_parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search parameter', new_search_parameter_path %>

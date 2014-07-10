@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :abouts
 
+  resources :stats
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -16,13 +18,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-
-
-  resources :politicians, except: [:destroy, :edit]
-
-  resources :stats
-  resources :contractors, except: [:destroy]
-  resources :contributions
 
 
 

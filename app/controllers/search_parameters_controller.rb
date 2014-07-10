@@ -7,6 +7,9 @@ class SearchParametersController < ApplicationController
     @search_parameters = SearchParameter.all
   end
 
+  def about
+  end
+
   # GET /search_parameters/1
   # GET /search_parameters/1.json
   def show

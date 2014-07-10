@@ -5,18 +5,25 @@ Rails.application.routes.draw do
 
   resources :politicians
 
+  resources :home
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  get 'home/about', :as => 'about'
+
+
   resources :politicians, except: [:destroy, :edit]
 
   resources :stats
   resources :contractors, except: [:destroy]
   resources :contributions
 
-  get 'about#about'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

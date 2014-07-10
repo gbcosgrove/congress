@@ -1,7 +1,7 @@
 <div class="row">
 <% m = Madison.new %>
 <div id="name-container">
-  <span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong> - <%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span>
+  <div class="name-container"><span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong> - <%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span></div>
 </div>
 </div>
 <div class="row full-width">

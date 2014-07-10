@@ -1,4 +1,4 @@
-<h2>Politicians Index</h2>
+<h2><span class="data-box">Politicians Index</h2></span></div>
 
 <div class="container" id="table-container">
   <table id="politician-index-table">
@@ -32,7 +32,7 @@
 
           <td><%= politician.district %></td>
           <td><%= politician.birthdate.to_date.to_formatted_s(:long_ordinal) %></td>
-          <td><%= link_to 'Show', politician %></td>
+          <td><span id="pol-button"><%= link_to 'Show', politician %></span></td>
 
         </tr>
       <% end %>

@@ -41,6 +41,7 @@
   border: 1px solid black;
   background-color: #98988A;
   padding: 12px;
+  border-radius: 5px;
 
 }
 
@@ -92,6 +93,14 @@ ul#pol-tab.tabs li {
   width: 20%;
 }
 
+.name-container {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: $off-white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-right: 7%;
+}
 
 .row.full-width {
   width: 100%;
@@ -115,5 +124,24 @@ ul#pol-tab.tabs li {
   padding-top: 20px;
 }
 
+#pol-button {
+  border: 1px solid black;
+  border-radius: 8px;
+  color: white;
+  height: 50%;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: $dark-blue;
+  padding-right: 20%;
+  padding-left: 20%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+
+}
+
+#pol-button a {
+  color: white;
+}
 
 

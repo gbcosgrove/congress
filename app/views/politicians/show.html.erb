@@ -5,44 +5,14 @@
 </div>
 </div>
 <div class="row full-width">
-<ul class="tabs" data-tab>
+<ul class="tabs" id="pol-tab" data-tab>
       <li class="tab-title active"><a href="#panel2-1">Bio</a></li>
-      <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Top Industries</a></li>
-      <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top Organizations</a></li>
-      <li class="tab-title" id="history-button"><a href="#panel2-4">Contribution History</a></li>
+      <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Top<br>Industries</a></li>
+      <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top<br>Organizations</a></li>
+      <li class="tab-title" id="history-button"><a href="#panel2-4">ContributionHistory</a></li>
+      <li class="tab-title" id="breakdown-button"><a href="#panel2-5">Breakdown</a></li>
 </ul>
 </div>
-
-
-<!--
-
-  <div class="large-2 columns">
-      <p id='congress-name'>
-      <% m = Madison.new %>
-      <strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong>
-      </p>
-      <div id='bio-photo'>
-        <img src='https://s3.amazonaws.com/congress-media/bio-pictures/100x125/<%= @politician.bioguide_id %>.jpg' />
-      </div>
-
-      <div class="content-box">
-          <strong>Party:</strong>
-          <%= party_abbrev(@politician.party) %>
-          <br>
-          <strong>State:</strong>
-          <%= m.get_name(@politician.state) %>
-          <br>
-          <strong>District:</strong>
-          <%= @politician.district %>
-          <br>
-          <strong>Birthdate:</strong>
-          <%= @politician.birthdate.to_date.to_formatted_s(:long_ordinal) %>
-          <br>
-      </div>
-      <div>
-
-    </div>
-  </div> -->
 
   <div id="donors">
 
@@ -93,31 +63,33 @@
 
          <!--  tab 2 -->
         <div class="content" id="panel2-2">
-          <div class="large-6 columns content-box">
-            <table class="formatted-data-table ">
-              <thead class="t-head">
-                <tr>
-                  <th>Category</th>
-                  <th>Count</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-                <tbody>
-                    <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
-                    <% chart = data.to_json.html_safe %>
-                    <% name = "#{@politician.firstname} #{@politician.last_name}" %>
-                    <% industries = top_industries(name: name, cycle:"2012") %>
-                    <% industries.each do |industry| %>
-                    <tr>
-                      <td><%= industry["name"].downcase.capitalize %></td>
-                      <td><%= industry["count"] %></td>
-                      <td>$<%= industry["amount"] %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-            </table>
+          <div class="row container full-width">
+            <div class="large-6 columns content-box">
+              <table class="formatted-data-table ">
+                <thead class="t-head">
+                  <tr>
+                    <th>Category</th>
+                    <th>Count</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                      <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+                      <% chart = data.to_json.html_safe %>
+                      <% name = "#{@politician.firstname} #{@politician.last_name}" %>
+                      <% industries = top_industries(name: name, cycle:"2012") %>
+                      <% industries.each do |industry| %>
+                      <tr>
+                        <td><%= industry["name"].downcase.capitalize %></td>
+                        <td><%= industry["count"] %></td>
+                        <td>$<%= industry["amount"] %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+            </div>
+            <div id="industry-chart" class="large-6 columns content-box"></div>
           </div>
-          <div id="industry-chart" class="large-6 columns content-box"></div>
         </div>
 
 
@@ -163,14 +135,25 @@
         <div class="content" id="panel2-4">
           <div id="history" class="large-12 columns"></div>
         </div>
+        <!-- Tab 5 -->
+       <div class="content" id="panel2-5">
+            <div id="breakdown-local" class="large-6 columns container"></div>
+            <div id="breakdown-type"  class="large-6 columns container"></div>
+       </div>
       </div>
+
+
   </div>
 
 <div>
+
+<!-- Donors Charts -->
   <% data = donor_industries_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
   <% chart = data.to_json.html_safe %>
 
   <% data = donor_contributors_chart(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012") %>
+
+<!-- Contributors Chart -->
   <% contributors_chart = data.to_json.html_safe %>
   <% pol = collect_totals("#{@politician.firstname} #{@politician.last_name}") %>
   <% money = contribution_overview(pol) %>
@@ -178,6 +161,19 @@
   <% years = contribution_amount_key(money).to_json.html_safe %>
   <% dollars = contribution_amount_value(money).to_json.html_safe %>
   <% counts = contribution_count_value(numbers).to_json.html_safe %>
+
+<!-- Breakdown Charts -->
+  <% locals = local_breakdowns(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012")%>
+  <% puts locals %>
+  <% puts locals["In-State"][1] %>
+
+  <% types = contributor_type_breakdown(name: "#{@politician.firstname} #{@politician.last_name}", cycle: "2012")%>
+  <% local_dollars = [["In-State", locals["In-State"][1].to_i],["Out-of-State", locals["Out-of-State"][1].to_i]]%>
+  <% ld_chart = local_dollars.to_json.html_safe %>
+
+  <% type_dollars = [["Individuals", types["Individuals"][1].to_i],["PACs", types["PACs"][1].to_i]] %>
+  <% t_chart = type_dollars.to_json.html_safe %>
+
 </div>
 
 <script>
@@ -253,7 +249,7 @@ $(function () {
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Contributions',
             data: <%= contributors_chart %>,
         }]
     });
@@ -349,6 +345,86 @@ $(function () {
 
 $(loadHistoryChart);
 $('#history-button').on('click', loadHistoryChart);
+
+</script>
+<script>
+function loadLocalBreakdown() {
+  $('#breakdown-local').highcharts({
+      chart: {
+          type: 'pie',
+          options3d: {
+      enabled: true,
+              alpha: 45,
+              beta: 0
+          }
+      },
+      title: {
+          text: 'In-State/Out-of-State Breakdown'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              depth: 35,
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.name}'
+              }
+          }
+      },
+      series: [{
+          type: 'pie',
+          name: 'Contributions',
+          data: <%= ld_chart %>,
+      }]
+  });
+}
+$(loadTopIndustriesChart);
+
+$('#breakdown-button').on('click', loadLocalBreakdown);
+
+</script>
+<script>
+function loadTypeBreakdown() {
+  $('#breakdown-type').highcharts({
+      chart: {
+          type: 'pie',
+          options3d: {
+      enabled: true,
+              alpha: 45,
+              beta: 0
+          }
+      },
+      title: {
+          text: 'Individual/PAC Contribution Breakdown'
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              depth: 35,
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.name}'
+              }
+          }
+      },
+      series: [{
+          type: 'pie',
+          name: 'Contributions',
+          data: <%= t_chart %>,
+      }]
+  });
+}
+$(loadTypeBreakdown);
+
+$('#breakdown-button').on('click', loadTypeBreakdown);
 
 </script>
 

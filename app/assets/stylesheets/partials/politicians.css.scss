@@ -2,7 +2,15 @@
   margin-top: 5%;
   margin-left: 15%;
   margin-right: 15%;
+  -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 }
+
+.shadow {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
 
 #bio-photo {
   -webkit-box-sizing: border-box;
@@ -11,37 +19,48 @@
   border: 2px solid black;
   width: 200px;
   height: 249px;
+   -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 }
 
 .container {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 30px;
   background-color: $dm-white;
   margin-bottom: 30px;
+   -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 }
 
 .box-container {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 30px;
   background-color: $dm-white;
   margin-bottom: 30px;
   margin-right: 50px;
+   -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 }
 
 .data-box {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   background-color: white;
   padding: 12px;
-  border-radius: 5px;
+   -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 
 }
 
@@ -49,19 +68,22 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   background-color: white;
   padding-left: 1%;
   padding-right: 2.7%;
   padding-top: 5%;
   padding-bottom: 5%;
+  -webkit-box-shadow:  0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow:         0 1px 1px rgba(0,0,0,0.2);
 }
 
 // .chart-box {
 //   -webkit-box-sizing: border-box;
 //   -moz-box-sizing: border-box;
 //   box-sizing: border-box;
-//   border: 1px solid black;
+//   border: 1px solid white;
 //   background-color: #98988A;
 //   padding-left: 1%;
 //   padding-right: 2.7%;
@@ -89,12 +111,12 @@ ul#pol-tab.tabs li {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   width: 20%;
 }
 
 .name-container {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 3px;
   background-color: $off-white;
   padding-top: 4px;
@@ -125,11 +147,11 @@ ul#pol-tab.tabs li {
 }
 
 #pol-button {
-  border: 1px solid black;
   border-radius: 8px;
   color: white;
   height: 50%;
-  width: 100%;
+  width: 70%;
+  margin-right: 4px;
   margin: 0 auto;
   text-align: center;
   background-color: $dark-blue;
@@ -137,11 +159,22 @@ ul#pol-tab.tabs li {
   padding-left: 20%;
   padding-top: 10%;
   padding-bottom: 10%;
-
 }
 
 #pol-button a {
   color: white;
+}
+
+#breakdown-local {
+  margin-left: 5%;
+}
+
+#breakdown-type {
+  margin-right: 5%;
+}
+
+#history {
+  margin-left: 10%;
 }
 
 

@@ -11,6 +11,22 @@
 
 #pol-received-bar {
   min-height: 50%;
+  padding-top: 3%;
+}
+
+#indiv-contrib-bar {
+  min-height: 50%;
+  padding-top: 3%;
+}
+
+#org-contrib-bar {
+  min-height: 50%;
+  padding-top: 3%;
+}
+
+#industry-contrib-bar {
+  min-height: 50%;
+  padding-top: 3%;
 }
 
 ul-tabs {
@@ -33,7 +49,7 @@ ul.a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid white;
   width: 25%;
 }
 
@@ -62,4 +78,20 @@ ul.a {
     height: 40%;
     margin-left: -10%;
 
+}
+
+.shadow {
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow:    0 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.table-container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid white;
+  padding: 10px;
+  background-color: white;
+  padding: 2em;
 }

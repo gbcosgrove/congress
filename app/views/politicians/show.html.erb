@@ -1,16 +1,16 @@
 <div class="row">
 <% m = Madison.new %>
 <div id="name-container">
-  <div class="name-container"><span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong> - <%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span></div>
+  <div class="name-container shadow"><span id="pol-name"><strong><%= @politician.title %>. <%= @politician.firstname %> <%= @politician.last_name %></strong> - <%= m.get_name(@politician.state) %>: <%= @politician.district %> (<%= @politician.party %>)</span></div>
 </div>
 </div>
 <div class="row full-width">
   <ul class="tabs large-12 columns" id="pol-tab" data-tab>
-        <li class="tab-title active"><a href="#panel2-1">Bio</a></li>
-        <li class="tab-title" id="top-industries-button"><a href="#panel2-2">Industries</a></li>
-        <li class="tab-title" id="top-donors-button"><a href="#panel2-3">Top Orgs</a></li>
-        <li class="tab-title" id="history-button"><a href="#panel2-4">History</a></li>
-        <li class="tab-title" id="breakdown-button"><a href="#panel2-5">Breakdown</a></li>
+        <li class="tab-title shadow active"><a href="#panel2-1">Bio</a></li>
+        <li class="tab-title shadow" id="top-industries-button"><a href="#panel2-2">Industries</a></li>
+        <li class="tab-title shadow" id="top-donors-button"><a href="#panel2-3">Top Orgs</a></li>
+        <li class="tab-title shadow" id="history-button"><a href="#panel2-4">History</a></li>
+        <li class="tab-title shadow" id="breakdown-button"><a href="#panel2-5">Breakdown</a></li>
   </ul>
 </div>
 
@@ -148,7 +148,7 @@
             <div class="row full-width container">
               <div class="row full-width">
                 <h3><span class="data-box">Contribution Totals and Counts Over Time</span></h3>
-                  <div id="history" class="large-12 columns"></div>
+                  <div id="history" class="large-10 columns chart-box shadow"></div>
               </div>
             </div>
           </div>
@@ -158,9 +158,9 @@
              <div class="row full-width container">
                 <h3><span class="data-box">Contribution Breakdowns</span></h3>
 
-                  <div id="breakdown-local" class="large-6 columns chart-box"></div>
+                  <div id="breakdown-local" class="large-5 columns chart-box"></div>
 
-                  <div id="breakdown-type"  class="large-6 columns chart-box"></div>
+                  <div id="breakdown-type"  class="large-5 columns chart-box"></div>
                 </div>
             </div>
           </div>
